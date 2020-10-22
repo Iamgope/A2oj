@@ -29,37 +29,11 @@ int nCr(int n,int r){int res=1;if(n<r)return -1;r=min(r,n-r);
 
 int nPr(int n,int r){int res=1;if(n<r)return -1;
 	loop(i,0,r)res*=(n-i);return res;}
+   
      
-void solve() {
-   ll n;
-   cin>>n;
- ll sum=0;
- loop(i,0,n)
- {
- 	ll num;
- 	cin>>num;
- 	sum+=num;
- }
- int ways=5;
- int k=sum+4;
- if(k%(n+1)==0)
- ways--;
- k=sum+3;
- if(k%(n+1)==0)
- ways--;
- k=sum+2;
- if(k%(n+1)==0)
- ways--;
- k=sum+1;
- if(k%(n+1)==0)
- ways--;
- k=sum;
- if(k%(n+1)==0)
- ways--;
- 
+    void solve() {
 
- cout<<ways<<endl;
- 
+    
 }
     int main()
     {

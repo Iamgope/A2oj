@@ -7,7 +7,7 @@
     #define endl '\n'
     #define fast_io ios_base::sync_with_stdio(0); cin.tie(0)
      #define endl '\n'
-#define loop(i, a, b) for (long long unsigned int i = a; i < b; i++)
+#define loop(i, a, b) for (long long  int i = a; i < b; i++)
     using namespace std;
      
    // typedef long long ll;
@@ -31,35 +31,13 @@ int nPr(int n,int r){int res=1;if(n<r)return -1;
 	loop(i,0,r)res*=(n-i);return res;}
      
 void solve() {
-   ll n;
-   cin>>n;
- ll sum=0;
- loop(i,0,n)
- {
- 	ll num;
- 	cin>>num;
- 	sum+=num;
- }
- int ways=5;
- int k=sum+4;
- if(k%(n+1)==0)
- ways--;
- k=sum+3;
- if(k%(n+1)==0)
- ways--;
- k=sum+2;
- if(k%(n+1)==0)
- ways--;
- k=sum+1;
- if(k%(n+1)==0)
- ways--;
- k=sum;
- if(k%(n+1)==0)
- ways--;
- 
-
- cout<<ways<<endl;
- 
+int Al,Ab,Ah;
+cin>>Al>>Ab>>Ah;
+int a=(Al*Ab)/Ah;
+int b=(Ab*Ah)/Al;
+int c=(Ah*Al)/Ab;
+int ans=int(sqrt(a+b+c+2*(Al+Ab+Ah)));
+cout<<4*ans<<endl;
 }
     int main()
     {

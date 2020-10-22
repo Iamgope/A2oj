@@ -7,7 +7,7 @@
     #define endl '\n'
     #define fast_io ios_base::sync_with_stdio(0); cin.tie(0)
      #define endl '\n'
-#define loop(i, a, b) for (long long unsigned int i = a; i < b; i++)
+#define loop(i, a, b) for (long long  int i = a; i < b; i++)
     using namespace std;
      
    // typedef long long ll;
@@ -31,35 +31,28 @@ int nPr(int n,int r){int res=1;if(n<r)return -1;
 	loop(i,0,r)res*=(n-i);return res;}
      
 void solve() {
-   ll n;
-   cin>>n;
- ll sum=0;
- loop(i,0,n)
- {
- 	ll num;
- 	cin>>num;
- 	sum+=num;
- }
- int ways=5;
- int k=sum+4;
- if(k%(n+1)==0)
- ways--;
- k=sum+3;
- if(k%(n+1)==0)
- ways--;
- k=sum+2;
- if(k%(n+1)==0)
- ways--;
- k=sum+1;
- if(k%(n+1)==0)
- ways--;
- k=sum;
- if(k%(n+1)==0)
- ways--;
- 
-
- cout<<ways<<endl;
- 
+ll n;
+cin>>n;
+ll arr[n];
+int in,j;
+ll mini= 1e9;
+loop(i,0,n){
+	cin>>arr[i];
+	if(i>0){
+	if(abs(arr[i-1]-arr[i])<mini)	{
+		mini=abs(arr[i]-arr[i-1]);
+		in=i;
+		j=i+1;
+	}
+	}
+	
+}
+if(abs(arr[0]-arr[n-1])<mini){
+	mini=abs(arr[0]-arr[n-1]);
+	in=1;
+	j=n;
+}
+cout<<in<<" "<<j<<endl;
 }
     int main()
     {
