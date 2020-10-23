@@ -29,26 +29,53 @@ int nCr(int n,int r){int res=1;if(n<r)return -1;r=min(r,n-r);
 
 int nPr(int n,int r){int res=1;if(n<r)return -1;
 	loop(i,0,r)res*=(n-i);return res;}
-   
+bool Digit(char c){
+	if(c=='1'||c=='4')
+	return true;
+	else 
+	return false;
+}   
      
     void solve() {
-ll n;
-cin>>n; ll min=1e9;
-vector<ll> vec(n);
-loop(i,0,n){cin>>vec[i];
-if(min>vec[i])min=vec[i];
-}    int index=0;
-    int count=0;
-    loop(i,0,n){
-    	if(vec[i]==min){
-        	count++;
-	    index=i+1;}
-    }
-    if(count==1)
-    cout<<index<<endl;
-    else
-    cout<<"Stil Rozdill"<<endl;
+string s;
+cin>>s;
+ll len=s.length(); bool check=false;bool ans=true;
+ll num=0;
+if(s[0]=='4')
+cout<<"NO"<<endl;
+else{
+
+loop(i,0,len){
+	if(Digit(s[i])==false){
+		//cout<<"NO"<<endl;
+		ans=false;
+		break;
+	}
+	if(s[i]=='4'){
+		if(check){
+			num++;
+		}
+		else
+		{
+			num=1;
+		}
+		check=true;
+		
+	}
+	else
+	{
+		check=false;
+		num=0;
+	}
+	if(num>2){
+		ans=false;
+		break;
+	}
 }
+if(ans)cout<<"YES"<<endl;
+else cout<<"NO"<<endl;
+
+}}
     int main()
     {
         fast_io;

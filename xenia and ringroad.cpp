@@ -32,22 +32,22 @@ int nPr(int n,int r){int res=1;if(n<r)return -1;
    
      
     void solve() {
-ll n;
-cin>>n; ll min=1e9;
-vector<ll> vec(n);
-loop(i,0,n){cin>>vec[i];
-if(min>vec[i])min=vec[i];
-}    int index=0;
-    int count=0;
-    loop(i,0,n){
-    	if(vec[i]==min){
-        	count++;
-	    index=i+1;}
-    }
-    if(count==1)
-    cout<<index<<endl;
-    else
-    cout<<"Stil Rozdill"<<endl;
+ll n,m;
+cin>>n>>m;
+ll arr[m];ll count=0;
+loop(i,0,m){cin>>arr[i];if(i==0)
+count+=arr[i]-1;
+else
+{
+	if(arr[i-1]<=arr[i])
+	count+=arr[i]-arr[i-1];
+	else
+	count+=n-arr[i-1]+arr[i];
+	
+}
+}
+cout<<count<<endl;
+
 }
     int main()
     {

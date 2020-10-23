@@ -32,22 +32,34 @@ int nPr(int n,int r){int res=1;if(n<r)return -1;
    
      
     void solve() {
-ll n;
-cin>>n; ll min=1e9;
-vector<ll> vec(n);
-loop(i,0,n){cin>>vec[i];
-if(min>vec[i])min=vec[i];
-}    int index=0;
-    int count=0;
-    loop(i,0,n){
-    	if(vec[i]==min){
-        	count++;
-	    index=i+1;}
+   ll n,cz,cf;
+   cz=0,cf=0;
+   cin>>n;ll arr[n];
+   loop(i,0,n){
+   	cin>>arr[i];
+   	if(arr[i]==0)
+   	cz++;
+   	else
+   	cf++;
+   }
+    ll z=(5*cf)/45;
+    if(z){
+    	if(cz==0)
+    	cout<<"-1"<<endl;
+    	else{
+    		loop(i,0,9*z)
+    		cout<<"5";
+    		loop(i,0,cz)
+    		cout<<"0";
+    		cout<<endl;
+	    }
     }
-    if(count==1)
-    cout<<index<<endl;
-    else
-    cout<<"Stil Rozdill"<<endl;
+    else{
+    	if(cz==0)
+    	cout<<"-1"<<endl;
+    	else
+    	cout<<"0"<<endl;
+    }
 }
     int main()
     {
