@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-
+//#include<unordered_set>
      #define ll long long int
     #define fi first
     #define se second
@@ -11,7 +11,7 @@
     using namespace std;
      
    // typedef long long ll;
-     
+     typedef pair<ll,ll> pairs;
     const int MAXN = 412345;
     const int MAXINT = 2047483098;
     const ll MOD = 1e9 + 7;
@@ -37,54 +37,25 @@ ll fact(ll n){
 	return (n%MOD)*fact(n-1)%MOD;
 }
     void solve() {
-    	ll n;
-    	cin>>n;
-    	ll a,b;
-    	cin>>a>>b;
-    	if(b==n/2)
-    	{
-    		ll  ans=fact(n-1)%MOD;
-    		cout<<ans<<endl;
-	}
-	    else
-	    { ll countr=0;
-	      ll countl=0;
-	    	ll right=n;
-	    	ll left=0;
-	    	bool flag=true;
-	    	//ll mid=n/2;
-	    	while(flag)
-	    	{     ll mid=(left+right)/2;
-	    //	cout<<mid<<endl;
-	    	if(mid==b)
-	    	{
-	    		flag=false;
-	    		break;
-		    }
-	    		else if(mid>b){
-	    		 	right=mid;
-	    		 	countr++;
-			}
-			else if(mid<b){
-				left=mid;
-				countl++;
-			}
-			
-		    }
-		    
-		ll ans=1;
-		if(n>b)
-		ans=(n-a);
-		loop(i,0,countr){
-			ans=((ans)%MOD)*((n-a-i-1)%MOD);
-		}
-		loop(i,0,countl){
-			ans=((ans)%MOD)*((a-1-i)%MOD);
-		}
-		ans=(((ans)%MOD)*((fact(n-2-countr-countl))%MOD))%MOD;
-		cout<<ans<<endl;
-	//	cout<<countl<<" "<<countr<<endl;
-	    }
+ll n;
+cin>>n;
+//set<pairs> u_s;
+map<pairs,ll> mp;
+ll count=0;
+loop(i,0,n){
+	ll a,b;
+	cin>>a>>b;
+	pairs p=m_p(a,b);
+	//u_s.insert(p);
+	mp[p]++;
+	count=max(count,mp[p]);
+}
+ll ans;
+//if(count>1)
+ans=count;
+//else
+//ans=1;
+cout<<ans<<endl;
 }
     int main()
     {

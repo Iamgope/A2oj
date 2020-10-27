@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-
+//#include<unordered_set>
      #define ll long long int
     #define fi first
     #define se second
@@ -11,12 +11,12 @@
     using namespace std;
      
    // typedef long long ll;
-     
+     typedef pair<ll,ll> pairs;
     const int MAXN = 412345;
     const int MAXINT = 2047483098;
     const ll MOD = 1e9 + 7;
     const int MAX = 1e4;
-     
+     const long double pi=2*acosl(0);
     const long double EPS = 1e-10;
      int gcd(int a,int b){if(b==0)return a;return gcd(b,a%b);}
 
@@ -37,62 +37,40 @@ ll fact(ll n){
 	return (n%MOD)*fact(n-1)%MOD;
 }
     void solve() {
-    	ll n;
-    	cin>>n;
-    	ll a,b;
-    	cin>>a>>b;
-    	if(b==n/2)
-    	{
-    		ll  ans=fact(n-1)%MOD;
-    		cout<<ans<<endl;
+  ll n,k,z;
+cin>>n>>k>>z;
+ll arr[n];
+//ll krr[k];
+loop(i,0,n){
+	cin>>arr[i];
+
+}ll ans=0;
+for(ll i=0;i<z+1;i++){
+	if(k-2*i<0)
+	continue;
+	
+	ll max_sib=0;
+	ll s=0;
+      for(ll j=0;j<k-2*i+1;j++){
+      	if(j<n-1)
+      	{
+      		max_sib=max(max_sib,arr[j]+arr[j+1]);
+      		
+		}
+		s+=arr[j];
 	}
-	    else
-	    { ll countr=0;
-	      ll countl=0;
-	    	ll right=n;
-	    	ll left=0;
-	    	bool flag=true;
-	    	//ll mid=n/2;
-	    	while(flag)
-	    	{     ll mid=(left+right)/2;
-	    //	cout<<mid<<endl;
-	    	if(mid==b)
-	    	{
-	    		flag=false;
-	    		break;
-		    }
-	    		else if(mid>b){
-	    		 	right=mid;
-	    		 	countr++;
-			}
-			else if(mid<b){
-				left=mid;
-				countl++;
-			}
-			
-		    }
-		    
-		ll ans=1;
-		if(n>b)
-		ans=(n-a);
-		loop(i,0,countr){
-			ans=((ans)%MOD)*((n-a-i-1)%MOD);
-		}
-		loop(i,0,countl){
-			ans=((ans)%MOD)*((a-1-i)%MOD);
-		}
-		ans=(((ans)%MOD)*((fact(n-2-countr-countl))%MOD))%MOD;
-		cout<<ans<<endl;
-	//	cout<<countl<<" "<<countr<<endl;
-	    }
+	ans=max(ans,s+max_sib*i);
+	
+}
+cout<<ans<<endl;
 }
     int main()
     {
         fast_io;
         
         int T;
-       // cin >> T;
-      T=1;
+       cin >> T;
+      //T=1;
         while(T--) {
             solve();
         }
