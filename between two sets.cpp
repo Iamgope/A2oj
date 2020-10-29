@@ -7,7 +7,7 @@
     #define endl '\n'
     #define fast_io ios_base::sync_with_stdio(0); cin.tie(0)
      #define endl '\n'
-#define loop(i, a, b) for (long long unsigned int i = a; i < b; i++)
+#define loop(i, a, b) for (int i = a; i < b; i++)
     using namespace std;
      
    // typedef long long ll;
@@ -36,41 +36,50 @@ ll fact(ll n){
 	else 
 	return (n%MOD)*fact(n-1)%MOD;
 }
-void eraseSubStr(std::string & mainStr, const std::string & toErase)
-{
-    // Search for the substring in string
-    size_t pos = mainStr.find(toErase);
-    if (pos != std::string::npos)
-    {
-        // If found then erase it from string
-        mainStr.erase(pos, toErase.length());
-    }
+int lcm(int arr[],int n){
+     int ans=arr[0];
+     loop(i,0,n){
+     	ans=((arr[i]*ans))/(gcd(arr[i],ans));
+     }
+     return ans;	
 }
-/*
- * Erase all Occurrences of given substring from main string.
- */
-void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
-{
-    size_t pos = std::string::npos;
-    // Search for the substring in string in a loop untill nothing is found
-    while ((pos  = mainStr.find(toErase) )!= std::string::npos)
-    {
-        // If found then erase it from string
-        mainStr.erase(pos, toErase.length());
-        mainStr.insert(pos," ");
-    }
-}
-/*
- * Erase all Occurrences of all given substrings from main string using C++11 stuff
- */
-
     void solve() {
-string s;
-cin>>s;
-eraseAllSubStr(s,"WUB");
-//cout<<s<<endl;
-eraseAllSubStr(s,"  ");
-cout<<s<<endl;
+    	int n,m;
+    	
+    	cin>>n>>m;
+    	int arr[n];
+    	int brr[n];
+    	loop(i,0,n){
+    		cin>>arr[i];
+	    }
+	    loop(i,0,m){
+	    	cin>>brr[i];
+	    }
+    	int lcm_val=lcm(arr,n);
+    	int copy=lcm_val;
+    //	cout<<lcm_val<<endl;
+    	int count=0;
+     int it=1; bool done=false;
+    	while(!done){
+    			bool flag=true;
+    	        	loop(i,0,m){
+    			if(brr[i]%lcm_val!=0)
+    			{flag=false;
+    		//	break;
+    			}
+    			if(brr[i]<lcm_val){
+    				done=true;
+    				break;
+			    }
+			    
+		    }if(flag)
+		    count++;
+		    it++;
+	          lcm_val=copy*(it);
+	    }
+    	cout<<count<<endl;
+    	//cout<<lcm_val<<endl;
+    	
 	}
  
   

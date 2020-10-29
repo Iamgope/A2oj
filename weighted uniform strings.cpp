@@ -36,41 +36,50 @@ ll fact(ll n){
 	else 
 	return (n%MOD)*fact(n-1)%MOD;
 }
-void eraseSubStr(std::string & mainStr, const std::string & toErase)
-{
-    // Search for the substring in string
-    size_t pos = mainStr.find(toErase);
-    if (pos != std::string::npos)
-    {
-        // If found then erase it from string
-        mainStr.erase(pos, toErase.length());
-    }
-}
-/*
- * Erase all Occurrences of given substring from main string.
- */
-void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
-{
-    size_t pos = std::string::npos;
-    // Search for the substring in string in a loop untill nothing is found
-    while ((pos  = mainStr.find(toErase) )!= std::string::npos)
-    {
-        // If found then erase it from string
-        mainStr.erase(pos, toErase.length());
-        mainStr.insert(pos," ");
-    }
-}
-/*
- * Erase all Occurrences of all given substrings from main string using C++11 stuff
- */
-
     void solve() {
 string s;
 cin>>s;
-eraseAllSubStr(s,"WUB");
-//cout<<s<<endl;
-eraseAllSubStr(s,"  ");
-cout<<s<<endl;
+ll n=s.length();
+vector<ll> vec; ll count=1;
+for(ll i=1;i<n;i++){
+		vec.push_back(count*(s[i-1]-'a'+1));
+	if(s[i-1]==s[i])
+	{
+		count++;
+	}
+	else{
+	
+		count=1;
+	}
+}
+vec.push_back(count*(s[n-1]-'a'+1));
+//sort(vec.begin(),vec.end());
+ll q;
+cin>>q;
+while(q--){
+	ll a;
+	cin>>a;
+	bool flag=false;
+	for(int i=0;i<vec.size();i++){
+		if(vec[i]==a)
+		{     flag=true;
+		break;
+			//cout<<"YES"<<endl;
+			//break;
+		}
+	}
+	if(flag){
+		cout<<"Yes"<<endl;
+	}
+	else
+	{
+		cout<<"No"<<endl;
+	}
+	
+}
+//	for(int i=0;i<vec.size();i++)
+//	cout<<vec[i]<<" ";
+
 	}
  
   

@@ -65,12 +65,45 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
  */
 
     void solve() {
+ll n;
+cin>>n;
 string s;
 cin>>s;
-eraseAllSubStr(s,"WUB");
-//cout<<s<<endl;
-eraseAllSubStr(s,"  ");
-cout<<s<<endl;
+ll len=s.length();
+if((len%n)){cout<<"-1"<<endl;
+//cout<<"111";
+}
+
+else{
+	ll arr[26]={0};
+	loop(i,0,len){
+		 arr[s[i]-'a']++;
+	}
+	bool flag=true;
+	string ans="";
+	ll count=0;
+	loop(i,0,26){
+		if(arr[i]>0){
+		if(arr[i]<n)
+		{
+			flag=false;
+			cout<<"-1"<<endl;
+			break;
+		}
+		else{
+			for(int j=0;j<arr[i]/n;j++){
+				ans.push_back('a'+i);
+			}
+		}
+		}
+	}//cout<<flag<<endl;
+	if(flag){
+		for(int i=0;i<n;i++)
+		cout<<ans;
+		//cout<<"1";
+	}
+	
+}
 	}
  
   
