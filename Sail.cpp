@@ -36,8 +36,74 @@ ll fact(ll n){
 	else 
 	return (n%MOD)*fact(n-1)%MOD;
 }
+void eraseSubStr(std::string & mainStr, const std::string & toErase)
+{
+    // Search for the substring in string
+    size_t pos = mainStr.find(toErase);
+    if (pos != std::string::npos)
+    {
+        // If found then erase it from string
+        mainStr.erase(pos, toErase.length());
+    }
+}
+/*
+ * Erase all Occurrences of given substring from main string.
+ */
+void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
+{
+    size_t pos = std::string::npos;
+    // Search for the substring in string in a loop untill nothing is found
+    while ((pos  = mainStr.find(toErase) )!= std::string::npos)
+    {
+        // If found then erase it from string
+        mainStr.erase(pos, toErase.length());
+        mainStr.insert(pos," ");
+    }
+}
+/*
+ * Erase all Occurrences of all given substrings from main string using C++11 stuff
+ */
+ll answer(ll x, ll y, string s,ll n){
+	loop(i,0,n){
+	
+	
+	
+	if(s[i]=='N'){
+		if(y>0){
+			y--;
+		}
+	}
+	else if(s[i]=='W'){
+		if(x<0)
+		{
+		   x++;	
+		}
+	}
+	else if(s[i]=='S'){
+		if(y<0){
+			y++;
+		}
+	}
+	else{
+		if(x>0){
+			x--;
+		}
+	}
+	if(x==0&&y==0){
+		return i+1;
+	}
+}
+
+return -1;
+}
     void solve() {
+ll n,x1,y1,x2,y2;
+cin>>n>>x1>>y1>>x2>>y2;
 string s;
+cin>>s;
+ll x=x2-x1;
+ll y=y2-y1;
+cout<<answer(x,y,s,n)<<endl;
 
 	}
  

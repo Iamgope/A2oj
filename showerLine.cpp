@@ -36,8 +36,36 @@ ll fact(ll n){
 	else 
 	return (n%MOD)*fact(n-1)%MOD;
 }
+void eraseSubStr(std::string & mainStr, const std::string & toErase)
+{
+    // Search for the substring in string
+    size_t pos = mainStr.find(toErase);
+    if (pos != std::string::npos)
+    {
+        // If found then erase it from string
+        mainStr.erase(pos, toErase.length());
+    }
+}
+/*
+ * Erase all Occurrences of given substring from main string.
+ */
+void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
+{
+    size_t pos = std::string::npos;
+    // Search for the substring in string in a loop untill nothing is found
+    while ((pos  = mainStr.find(toErase) )!= std::string::npos)
+    {
+        // If found then erase it from string
+        mainStr.erase(pos, toErase.length());
+        mainStr.insert(pos," ");
+    }
+}
+/*
+ * Erase all Occurrences of all given substrings from main string using C++11 stuff
+ */
+
     void solve() {
-string s;
+
 
 	}
  
