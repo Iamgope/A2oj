@@ -63,25 +63,68 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
 /*
  * Erase all Occurrences of all given substrings from main string using C++11 stuff
  */
+ll answer(ll x, ll y, string s,ll n){
+	loop(i,0,n){
+	
+	
+	
+	if(s[i]=='N'){
+		if(y>0){
+			y--;
+		}
+	}
+	else if(s[i]=='W'){
+		if(x<0)
+		{
+		   x++;	
+		}
+	}
+	else if(s[i]=='S'){
+		if(y<0){
+			y++;
+		}
+	}
+	else{
+		if(x>0){
+			x--;
+		}
+	}
+	if(x==0&&y==0){
+		return i+1;
+	}
+}
 
+return -1;
+}
     void solve() {
-ll arr[5][5];
-
-loop(i,0,5){
-	loop(j,0,5){
-		cin>>arr[i][j];
+ll n,k;
+cin>>n>>k;
+bool flag=true;
+ll arr[n];
+loop(i,0,n){
+	cin>>arr[i];
+}
+ll val=arr[k-1];
+loop(i,k-1,n){
+	if(arr[i]!=val){
+		flag=false;
+		break;
 	}
+}
+if(flag)
 
-}
-vector<ll> vec;
-loop(i,1,5){
-	loop(j,0,i){
-		vec.push_back(arr[i][j]+arr[j][i]);
+{  ll count=0;
+	for(ll i=n-1;i>=0;i--){
+		if(arr[i]!=val)
+		break;
+		else
+		count++;
 	}
+	cout<<n-count<<endl;
 }
-sort(vec.begin(),vec.end());
-cout<<vec[9]*2+vec[8]*2+vec[7]<<endl;
-}
+else
+cout<<"-1"<<endl;
+	}
  
   
  

@@ -7,7 +7,7 @@
     #define endl '\n'
     #define fast_io ios_base::sync_with_stdio(0); cin.tie(0)
      #define endl '\n'
-#define loop(i, a, b) for (long long unsigned int i = a; i < b; i++)
+#define loop(i, a, b) for (long long int i = a; i < b; i++)
     using namespace std;
      
    // typedef long long ll;
@@ -62,26 +62,52 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
 }
 /*
  * Erase all Occurrences of all given substrings from main string using C++11 stuff
- */
+*/
+ll goodSeq(ll arr[],ll n){
+	ll maxi=0;
+	ll prev=-1;
+    loop(i,1,n){
+    	if(arr[i]==arr[i-1])
+    	{   if(prev==-1){
+    		maxi=i;
+    		prev=i;
+	    }
+	    else
+	    { 
+	    	maxi=max(maxi,i-prev);
+	    	prev=i;
+	    }
+    		
+	    }
+    	
+    }
+    if(prev==-1)
+    return n;
+    else
+    return maxi;
+}
+
 
     void solve() {
-ll arr[5][5];
-
-loop(i,0,5){
-	loop(j,0,5){
-		cin>>arr[i][j];
+    ll n,q;
+    cin>>n>>q;
+    ll arr[n];
+    loop(i,0,n){
+    	cin>>arr[i];
+    }
+    loop(i,0,q){
+    	ll x,y;
+    	cin>>x>>y;
+    	if(n==1)
+    	cout<<"1"<<endl;
+    	else{
+    		arr[x-1]=y;
+    		ll ans=goodSeq(arr,n);
+    		cout<<ans<<endl;
+	    }
+    }
+	
 	}
-
-}
-vector<ll> vec;
-loop(i,1,5){
-	loop(j,0,i){
-		vec.push_back(arr[i][j]+arr[j][i]);
-	}
-}
-sort(vec.begin(),vec.end());
-cout<<vec[9]*2+vec[8]*2+vec[7]<<endl;
-}
  
   
  
@@ -90,8 +116,8 @@ cout<<vec[9]*2+vec[8]*2+vec[7]<<endl;
         fast_io;
         
         int T;
-      // cin >> T;
-      T=1;
+      cin >> T;
+      //T=1;
         while(T--) {
             solve();
         }

@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 //#include<unordered_set>
      #define ll long long int
+     #define llu long long unsigned int
     #define fi first
     #define se second
     #define m_p make_pair
@@ -65,22 +66,43 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
  */
 
     void solve() {
-ll arr[5][5];
-
-loop(i,0,5){
-	loop(j,0,5){
-		cin>>arr[i][j];
-	}
-
+llu b,n,m;
+cin>>b>>n>>m;
+llu arr[n];
+llu brr[m];
+llu mini=1e6;
+llu mani=1e6;
+loop(i,0,n){
+	cin>>arr[i];
+	mini=min(mini,arr[i]);
 }
-vector<ll> vec;
-loop(i,1,5){
-	loop(j,0,i){
-		vec.push_back(arr[i][j]+arr[j][i]);
-	}
+loop(i,0,m){
+	cin>>brr[i];
+	mani=min(brr[i],mani);
 }
-sort(vec.begin(),vec.end());
-cout<<vec[9]*2+vec[8]*2+vec[7]<<endl;
+
+if(mani+mini>b)
+cout<<"-1"<<endl;
+else{
+     vector<llu> vec;
+     bool flag=true;
+     loop(i,0,n){
+     	loop(j,0,m){
+     		ll sum=arr[i]+brr[j];
+     		if(sum<b)
+     		vec.push_back(sum);
+     		if(sum==b){
+     			cout<<b<<endl;
+     			
+     			flag=false;
+     			break;
+		     }
+	     }
+     }
+    if(flag) {
+     sort(vec.begin(),vec.end());
+     cout<<vec[vec.size()-1]<<endl;}
+}
 }
  
   
