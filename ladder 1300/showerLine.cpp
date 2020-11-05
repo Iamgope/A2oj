@@ -65,22 +65,27 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
  */
 
     void solve() {
-ll arr[5][5];
-
+vector<vector<ll> > v;
 loop(i,0,5){
-	loop(j,0,5){
-		cin>>arr[i][j];
+	vector<ll> vec;
+	loop(j,0,5)
+	{
+		ll a;
+		cin>>a;
+		vec.push_back(a);
 	}
-
+	v.push_back(vec);
 }
-vector<ll> vec;
-loop(i,1,5){
+vector<ll> a;
+loop(i,0,5){
 	loop(j,0,i){
-		vec.push_back(arr[i][j]+arr[j][i]);
+		a.push_back(v[i][j]+v[j][i]);
 	}
 }
-sort(vec.begin(),vec.end());
-cout<<vec[9]*2+vec[8]*2+vec[7]<<endl;
+sort(a.begin(),a.end());
+cout<<a[9]*2+a[8]*2+a[7]<<endl;
+
+
 }
  
   
