@@ -61,64 +61,48 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
         mainStr.insert(pos," ");
     }
 }
-typedef std::pair<double, double> my_pair;
 /*
  * Erase all Occurrences of all given substrings from main string using C++11 stuff
  */
-struct sort_pred
-{
-      bool operator () (const my_pair& left, const my_pair& right)
-            {
-                  return (left.first < right.first) && (left.second > right.second);
-            }
-};
+
     void solve() {
 ll n;
 cin>>n;
-vector<pair<ll,ll> > vec;
+vector<pair<ll,ll> >v;
+ll ma=0,mi=1e9;
 loop(i,0,n){
-	pair<ll,ll> p;
 	ll a,b;
 	cin>>a>>b;
-      p.first=a;
-      p.second=b;
-      vec.push_back(p);
-
+	pair<ll,ll> p;
+	p.first=a;
+	p.second=b;
+	ma=max(b,ma);
+	mi=min(mi,a);
+	v.push_back(p);
 }
-sort(vec.begin(),vec.end(),sort_pred());
-ll count=0;
-loop(i,0,n-1){ bool flag=true;
-	loop(j,i+1,n){
-	
-	if(vec[i].second>=vec[j].first){
-		if(vec[i].second<vec[j].second)
-		{
-			flag=false;
-			break;
-		}
+bool flag=false;
+loop(i,0,n){
+	if(v[i].first==mi&&v[i].second==ma){
+		flag=true;
+		cout<<i+1<<endl;
 	}
-	else
-	{
-		break;
-	}
-	
 }
-if(flag)
-count++;
+if(flag==false){
+	cout<<"-1"<<endl;
 }
-if(count==0)
-cout<<"-1"<<endl;
-else
-cout<<count<<endl;
-
 }
 
     int main()
     {
-        fast_io;
+        #ifndef ONLINE_JUDGE
+		freopen("input.txt","r",stdin);
+		freopen("output.txt","w",stdout);
+	#endif
+	std::ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+ 
 
         int T;
-       //cin >> T;
+      // cin >> T;
       T=1;
         while(T--) {
             solve();

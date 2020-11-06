@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <fstream>
 #include<string>
 //#include<unordered_set>
      #define ll long long int
@@ -67,38 +66,49 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
  */
 
     void solve() {
-    
-ll n,m;
-cin>>n>>m;
-ll k;
-if(n>m)
-k=m;
-else
- k=n;
-loop(i,0,k{
-	cout<<"BG";
+ll n;
+
+cin>>n;
+ll arr[n];
+ll brr[n];
+vector<pair<ll,ll> > v;
+ll m=0;
+ll s=0;
+loop(i,0,n){
+	cin>>arr[i];
+	m=max(m,arr[i]);
 }
-if(n>m){
-	loop(i,0,n-m)
-	cout<<"B";
+loop(i,0,n){
+	cin>>brr[i];
+	s+=brr[i];
+//	mp[arr[i]]=brr[i];
+	pair<ll,ll> p;
+	p.first=arr[i];
+	p.second=brr[i];
+	v.push_back(p);
 }
-if(m>n){
-	loop(i,0,m-n)
-	cout<<"G";
+ll ans=m;
+ll sb=0;
+
+sort(v.begin(),v.end());
+loop(i,0,n-1){
+	sb+=v[n-1-i].second;
+	ans=min(ans,max(sb,v[n-2-i].first));
+	if(max(sb,v[n-2-i].first)>ans)
+	break;
 }
+ans=min(ans,sb+v[0].second);
+cout<<ans<<endl;
+
 }
 
     int main()
     {
-        #ifndef ONLINE_JUDGE
-		freopen("input.txt","r",stdin);
-		freopen("output.txt","w",stdout);
-	#endif
-	std::ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+        fast_io;
 
         int T;
-      // cin >> T;
-      T=1;
+       cin >> T;
+      //T=1;
         while(T--) {
             solve();
         }

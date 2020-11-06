@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <fstream>
 #include<string>
 //#include<unordered_set>
      #define ll long long int
@@ -65,36 +64,45 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
 /*
  * Erase all Occurrences of all given substrings from main string using C++11 stuff
  */
-
+bool cond(const pair<ll,ll> &a,
+                   const pair<ll,ll> &b)
+{
+      return a.first>=a.second && a.second<=b.second;
+}
     void solve() {
-    
-ll n,m;
-cin>>n>>m;
-ll k;
-if(n>m)
-k=m;
-else
- k=n;
-loop(i,0,k{
-	cout<<"BG";
+ll n,k;
+cin>>n>>k;
+vector<pair<ll,ll> > v;
+map<pair<ll,ll>, ll > mp;
+loop(i,0,n){
+	ll a,b;
+	cin>>a>>b;
+	pair<ll,ll> p;
+	p.first=a;
+	p.second=b;
+	v.push_back(p);
+	mp[p]++;
 }
-if(n>m){
-	loop(i,0,n-m)
-	cout<<"B";
+
+    //myvector.erase(it);
+sort(v.begin(),v.end(),cond);
+loop(i,1,n){
+	if(v[i-1].first==v[i].first && v[i-1].second==v[i].second)
+	v.erase(v.begin()+i-1,v.begin()+i-1);
+	
 }
-if(m>n){
-	loop(i,0,m-n)
-	cout<<"G";
+cout<<endl<<endl;
+loop(i,0,v.size()){
+	cout<<v[i].first<<" "<<v[i].second<<endl;
 }
+//cout<<v.size()<<endl;
+cout<<mp[v[k-1]]<<endl;
+
 }
 
     int main()
     {
-        #ifndef ONLINE_JUDGE
-		freopen("input.txt","r",stdin);
-		freopen("output.txt","w",stdout);
-	#endif
-	std::ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+        fast_io;
 
         int T;
       // cin >> T;

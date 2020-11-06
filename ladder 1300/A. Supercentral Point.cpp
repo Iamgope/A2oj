@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <fstream>
 #include<string>
 //#include<unordered_set>
      #define ll long long int
@@ -67,34 +66,44 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
  */
 
     void solve() {
-    
-ll n,m;
-cin>>n>>m;
-ll k;
-if(n>m)
-k=m;
-else
- k=n;
-loop(i,0,k{
-	cout<<"BG";
-}
-if(n>m){
-	loop(i,0,n-m)
-	cout<<"B";
-}
-if(m>n){
-	loop(i,0,m-n)
-	cout<<"G";
-}
-}
+    ll n;
+    cin>>n;
+    vector<pair<ll,ll> > v;
+    loop(i,0,n){
+    	pair<ll,ll> p;
+    	ll a,b;
+    	cin>>a>>b;
+    	p.first=a;
+    	p.second=b;
+    	v.push_back(p);
+    }
+     
+    ll count=0;
+    loop(i,0,n){
+    	bool a=false,b=false,c=false,d=false;
+    	loop(j,0,n){
+    		if(i!=j){
+    			if(v[i].first==v[j].first && v[i].second>v[j].second)
+    			a=true;
+    			if(v[i].first==v[j].first && v[i].second < v[j].second)
+    			b=true;
+    			if(v[i].first>v[j].first&&v[i].second==v[j].second)
+    			c=true;
+    			if(v[i].first<v[j].first&&v[i].second==v[j].second)
+    			d=true;
+		    }
+	    }
+	    if(a&&b&&c&&d)
+	    count++;
+	    
+    }
+     cout<<count<<endl;
+     //cout<<a<<b<<c<<d;
+    }
 
     int main()
     {
-        #ifndef ONLINE_JUDGE
-		freopen("input.txt","r",stdin);
-		freopen("output.txt","w",stdout);
-	#endif
-	std::ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+        fast_io;
 
         int T;
       // cin >> T;

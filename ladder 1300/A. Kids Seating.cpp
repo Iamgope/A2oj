@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <fstream>
 #include<string>
 //#include<unordered_set>
      #define ll long long int
@@ -67,38 +66,24 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
  */
 
     void solve() {
-    
-ll n,m;
-cin>>n>>m;
-ll k;
-if(n>m)
-k=m;
-else
- k=n;
-loop(i,0,k{
-	cout<<"BG";
+ll n;
+cin>>n;
+ll a=n*4;
+ll b=a/2;
+loop(i,0,n){
+	cout<<2*(b-i)<<" ";
 }
-if(n>m){
-	loop(i,0,n-m)
-	cout<<"B";
-}
-if(m>n){
-	loop(i,0,m-n)
-	cout<<"G";
-}
+cout<<endl;
+
 }
 
     int main()
     {
-        #ifndef ONLINE_JUDGE
-		freopen("input.txt","r",stdin);
-		freopen("output.txt","w",stdout);
-	#endif
-	std::ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+        fast_io;
 
         int T;
-      // cin >> T;
-      T=1;
+       cin >> T;
+      //T=1;
         while(T--) {
             solve();
         }

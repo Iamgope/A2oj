@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <fstream>
 #include<string>
 //#include<unordered_set>
      #define ll long long int
@@ -67,34 +66,51 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
  */
 
     void solve() {
-    
-ll n,m;
-cin>>n>>m;
-ll k;
-if(n>m)
-k=m;
+ll n;
+cin>>n;
+ll arr[n];
+loop(i,0,n){
+	cin>>arr[i];
+}
+ll t25=0;
+ll t50=0;
+//ll t100=0;
+if(arr[0]!=25)
+cout<<"NO"<<endl;
 else
- k=n;
-loop(i,0,k{
-	cout<<"BG";
-}
-if(n>m){
-	loop(i,0,n-m)
-	cout<<"B";
-}
-if(m>n){
-	loop(i,0,m-n)
-	cout<<"G";
+{     bool flag=true;
+	loop(i,0,n){
+	if(arr[i]==25)
+	t25+=25;
+	else if(arr[i]==50){
+		t50+=50;
+		t25-=25;
+	}
+	else{
+		if(t50>0){
+			t50-=50;
+			t25-=25;
+		}
+		else{
+			t25-=75;
+		}
+	}
+	if(t25<0||t50<0)
+	{
+		flag=false;
+		break;
+	}
+	}
+	if(flag)
+	cout<<"YES"<<endl;
+	else
+	cout<<"NO"<<endl;
 }
 }
 
     int main()
     {
-        #ifndef ONLINE_JUDGE
-		freopen("input.txt","r",stdin);
-		freopen("output.txt","w",stdout);
-	#endif
-	std::ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+        fast_io;
 
         int T;
       // cin >> T;

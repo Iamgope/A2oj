@@ -9,7 +9,7 @@
     #define endl '\n'
     #define fast_io ios_base::sync_with_stdio(0); cin.tie(0)
      #define endl '\n'
-#define loop(i, a, b) for (long long unsigned int i = a; i < b; i++)
+   #define loop(i, a, b) for (long long unsigned int i = a; i < b; i++)
     using namespace std;
 
    // typedef long long ll;
@@ -75,7 +75,7 @@ if(n>m)
 k=m;
 else
  k=n;
-loop(i,0,k{
+loop(i,0,k){
 	cout<<"BG";
 }
 if(n>m){
@@ -90,11 +90,7 @@ if(m>n){
 
     int main()
     {
-        #ifndef ONLINE_JUDGE
-		freopen("input.txt","r",stdin);
-		freopen("output.txt","w",stdout);
-	#endif
-	std::ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+        
 
         int T;
       // cin >> T;
