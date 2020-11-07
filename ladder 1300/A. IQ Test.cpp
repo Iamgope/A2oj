@@ -64,25 +64,44 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
 /*
  * Erase all Occurrences of all given substrings from main string using C++11 stuff
  */
+ ll fu(vector<string> v,ll a,ll b,ll c, ll d,char ch)
+ {    if(v[a][b]==ch){
+ 	if(v[a][b]==v[c][d])
+ 	return 1;
+ }
+ 	return 0;
+ }
 
     void solve() {
-ll n,k;
-cin>>n>>k;
-map<double,ll> mp;
-vector<double> v;
-loop(i,0,n){
-	double a,b;
-	cin>>a>>b;
-	double c=a-b/50;
-	//if(mp[c]==0)
-	v.push_back(c);
-	mp[c]++;
-	//cout<<c<<endl;
+    	vector<string > v;
+loop(i,0,4){
+ 
+ string s;
+ cin>>s;
+ v.push_back(s);
+ //cout<<s<<endl;
+ 
 }
-sort(v.begin(),v.end());
-
-cout<<mp[v[v.size()-k]]<<endl;
-
+bool flag=false;
+loop(i,0,3){
+	loop(j,0,3){
+	
+		
+		ll a=fu(v,i,j,i+1,j,'#')+fu(v,i,j,i,j+1,'#')+fu(v,i+1,j,i+1,j+1,'#')+fu(v,i,j+1,i+1,j+1,'#');
+		 ll b=fu(v,i,j,i+1,j,'.')+fu(v,i,j,i,j+1,'.')+fu(v,i+1,j,i+1,j+1,'.')+fu(v,i,j+1,i+1,j+1,'.');
+		if(max(a,b)>=2)
+		{
+			flag=true;
+			break;
+		}
+//	cout<<v[i][j];
+	}
+}
+if(flag){
+	cout<<"YES"<<endl;
+}
+else
+cout<<"NO"<<endl;
 }
 
     int main()

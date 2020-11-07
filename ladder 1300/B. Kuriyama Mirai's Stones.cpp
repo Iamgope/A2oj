@@ -8,7 +8,7 @@
     #define endl '\n'
     #define fast_io ios_base::sync_with_stdio(0); cin.tie(0)
      #define endl '\n'
-#define loop(i, a, b) for (long long unsigned int i = a; i < b; i++)
+#define loop(i, a, b) for (long long  int i = a; i < b; i++)
     using namespace std;
 
    // typedef long long ll;
@@ -66,25 +66,38 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
  */
 
     void solve() {
-ll n,k;
-cin>>n>>k;
-map<double,ll> mp;
-vector<double> v;
+ll n;
+cin>>n;
+ll arr[n];
+ll brr[n+1];
+brr[0]=0;
+loop(i,0,n)
+{
+cin>>arr[i];
+brr[i+1]=brr[i]+arr[i];	
+}
+
+
+sort(arr,arr+n);
+ll crr[n+1];
+crr[0]=0;
 loop(i,0,n){
-	double a,b;
-	cin>>a>>b;
-	double c=a-b/50;
-	//if(mp[c]==0)
-	v.push_back(c);
-	mp[c]++;
-	//cout<<c<<endl;
+	crr[i+1]=arr[i]+crr[i];
 }
-sort(v.begin(),v.end());
-
-cout<<mp[v[v.size()-k]]<<endl;
-
+ll m;
+cin>>m;
+loop(i,0,m){
+	ll a,b,c;
+	cin>>a>>b>>c;
+	if(a==1){
+		cout<<brr[c]-brr[b-1]<<endl;
+	}
+	if(a==2){
+		cout<<crr[c]-crr[b-1]<<endl;
+	}
 }
 
+}
     int main()
     {
         fast_io;

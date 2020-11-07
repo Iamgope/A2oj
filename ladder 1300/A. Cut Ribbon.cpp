@@ -66,23 +66,31 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
  */
 
     void solve() {
-ll n,k;
-cin>>n>>k;
-map<double,ll> mp;
-vector<double> v;
-loop(i,0,n){
-	double a,b;
-	cin>>a>>b;
-	double c=a-b/50;
-	//if(mp[c]==0)
-	v.push_back(c);
-	mp[c]++;
-	//cout<<c<<endl;
-}
-sort(v.begin(),v.end());
-
-cout<<mp[v[v.size()-k]]<<endl;
-
+ll n,a,b,c;
+cin>>n>>a>>b>>c;
+	ll x=min(a,min(b,c));
+	ll z=max(a,max(b,c));
+	ll y=a+b+c-x-z;ll ans=0;
+	if(n%x==0)
+	cout<<n/x<<endl;
+	//cout<<x<<y<<z<<endl;
+	else{
+        loop(i,0,n/x +2){
+        	loop(j,0,n/y +2){
+        		ll val=(n-a*i-b*j);
+        		if(val%c==0)
+        		{   val=val/c;
+        			if(val>=0)
+        			{
+        				ll value=i+j+val;
+        				ans=max(ans,value);
+				  }
+			  }
+		  }
+	  }
+	cout<<ans<<endl;	
+	}
+	
 }
 
     int main()

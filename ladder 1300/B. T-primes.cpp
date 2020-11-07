@@ -64,24 +64,56 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
 /*
  * Erase all Occurrences of all given substrings from main string using C++11 stuff
  */
+ bool isPerfectSquare(ll num)
+{  
+    long long left = 1, right = num;
+   
+    while (left <= right) 
+    {
+        long long mid = (left + right) / 2;
+        
+        // Check if mid is perfect square
+        if (mid * mid == num) 
+        {
+            return true; 
+        }
+         
+        // Mid is small -> go right to increase mid
+        if (mid * mid < num) 
+        { 
+            left = mid + 1; 
+        }
+       
+        // Mid is large -> to left to decrease mid
+        else
+        {
+            right = mid - 1; 
+        }
+    }
+    return false;
+}
 
     void solve() {
-ll n,k;
-cin>>n>>k;
-map<double,ll> mp;
-vector<double> v;
-loop(i,0,n){
-	double a,b;
-	cin>>a>>b;
-	double c=a-b/50;
-	//if(mp[c]==0)
-	v.push_back(c);
-	mp[c]++;
-	//cout<<c<<endl;
-}
-sort(v.begin(),v.end());
+ll n;
+cin>>n;
 
-cout<<mp[v[v.size()-k]]<<endl;
+loop(i,0,n){
+	ll a;
+	cin>>a;
+	if(a==1)
+	cout<<"NO"<<endl;
+else	if(ceil(sqrt(a))==floor(sqrt(a)))
+       {
+       	if(isPrime(ceil(sqrt(a))))
+       	cout<<"YES"<<endl;
+       	else
+       	cout<<"NO"<<endl;
+       	
+	 }
+	 else
+	 cout<<"NO"<<endl;
+}
+//cout<<log2(n);
 
 }
 
