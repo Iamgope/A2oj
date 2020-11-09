@@ -66,59 +66,24 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
  */
 
     void solve() {
-ll n,m;
-cin>>n>>m;
-vector< pair<ll,ll> > v;
-loop(i,0,n){
-	ll a,b;
-	cin>>a>>b;
-	pair<ll,ll> p;
-	p.first=a;
-	p.second=b;
-	v.push_back(p);
+double arr[5];
+double brr[5];
+loop(i,0,5){
+	cin>>arr[i];
 }
-
-sort(v.begin(),v.end());
-ll sum[n];
-//sum.push_back(0);
-loop(i,0,n){
-	if(i>0)
-	sum[i]=sum[i-1]+v[i].second;
-	else
-	sum[i]=v[i].second;
-}
-ll ans=0;
-loop(i,0,n){
-	ll left=i;
-	ll right=n-1;
-	while(left<right){
-		ll mid=(left+right)/2;
-		if(v[mid].first-v[i].first<=m){
-			left=mid+1;
-		}
-		else
-		{
-			right=mid-1;
-		}
-		if(v[left].first-v[i].first<=m){
-		if(i==0)
-		ans=max(ans,sum[left]);
-		else
-		ans=max(ans,sum[left]-sum[i-1]);
-		}
-	//	cout<<left<<" "<<i<<" "<<ans<<endl;
-	}
-}
-if(n==1)
-cout<<v[0].second<<endl;
-else if(n==2)
+loop(i,0,5)
 {
-	if(abs(v[0].first-v[1].first)>m)
-	cout<<max(v[0].second,v[1].second)<<endl;
-	else
-	cout<<v[0].second+v[1].second<<endl;
+	cin>>brr[i];
 }
-else
+ll a,b;
+cin>>a>>b;
+double ans=0;
+loop(i,0,5){
+	ans+=max(0.3*500*(1+i),((1-(arr[i]/250))*500*(i+1)-50*brr[i]));
+}
+ll val=floor(ans);
+ans+=100*a;
+ans-=50*b;
 cout<<ans<<endl;
 }
 

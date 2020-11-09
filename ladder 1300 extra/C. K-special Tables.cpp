@@ -66,60 +66,31 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
  */
 
     void solve() {
-ll n,m;
-cin>>n>>m;
-vector< pair<ll,ll> > v;
+ll n,k;
+cin>>n>>k;
+ll sum=0;
+ll arr[n];
 loop(i,0,n){
-	ll a,b;
-	cin>>a>>b;
-	pair<ll,ll> p;
-	p.first=a;
-	p.second=b;
-	v.push_back(p);
+	sum+=n*n-(n-k)-(n+1-k)*i;
+	arr[i]=n*n-(n-k)-(n+1-k)*i;
 }
-
-sort(v.begin(),v.end());
-ll sum[n];
-//sum.push_back(0);
+//cout<<sum<<endl;
+ll count=0;
+cout<<sum<<endl;
 loop(i,0,n){
-	if(i>0)
-	sum[i]=sum[i-1]+v[i].second;
-	else
-	sum[i]=v[i].second;
-}
-ll ans=0;
-loop(i,0,n){
-	ll left=i;
-	ll right=n-1;
-	while(left<right){
-		ll mid=(left+right)/2;
-		if(v[mid].first-v[i].first<=m){
-			left=mid+1;
-		}
-		else
-		{
-			right=mid-1;
-		}
-		if(v[left].first-v[i].first<=m){
-		if(i==0)
-		ans=max(ans,sum[left]);
-		else
-		ans=max(ans,sum[left]-sum[i-1]);
-		}
-	//	cout<<left<<" "<<i<<" "<<ans<<endl;
+	
+	loop(j,0,k-1){
+		
+			count++;
+			cout<<count<<" ";
 	}
+	ll a=0;
+	loop(s,k-1,n){
+		cout<<arr[i]+a<<" ";
+		a++;
+	}
+	cout<<endl;
 }
-if(n==1)
-cout<<v[0].second<<endl;
-else if(n==2)
-{
-	if(abs(v[0].first-v[1].first)>m)
-	cout<<max(v[0].second,v[1].second)<<endl;
-	else
-	cout<<v[0].second+v[1].second<<endl;
-}
-else
-cout<<ans<<endl;
 }
 
     int main()

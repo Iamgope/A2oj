@@ -66,60 +66,39 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
  */
 
     void solve() {
-ll n,m;
-cin>>n>>m;
-vector< pair<ll,ll> > v;
+ll n;
+cin>>n;
+ll arr[n];
+vector<ll> v;
+map<ll,ll> mp;
 loop(i,0,n){
-	ll a,b;
-	cin>>a>>b;
-	pair<ll,ll> p;
-	p.first=a;
-	p.second=b;
-	v.push_back(p);
+	cin>>arr[i];
+	mp[arr[i]]++;
+	if(mp[arr[i]]==1)
+	{
+	v.push_back(arr[i]);	
+	}
+	//v.push_back(arr[i]);
+	
 }
 
 sort(v.begin(),v.end());
-ll sum[n];
-//sum.push_back(0);
+ll val=v[v.size()-1];
+sort(arr,arr+n);
 loop(i,0,n){
-	if(i>0)
-	sum[i]=sum[i-1]+v[i].second;
-	else
-	sum[i]=v[i].second;
-}
-ll ans=0;
-loop(i,0,n){
-	ll left=i;
-	ll right=n-1;
-	while(left<right){
-		ll mid=(left+right)/2;
-		if(v[mid].first-v[i].first<=m){
-			left=mid+1;
-		}
-		else
-		{
-			right=mid-1;
-		}
-		if(v[left].first-v[i].first<=m){
-		if(i==0)
-		ans=max(ans,sum[left]);
-		else
-		ans=max(ans,sum[left]-sum[i-1]);
-		}
-	//	cout<<left<<" "<<i<<" "<<ans<<endl;
+	if(mp[arr[n-1-i]]>1)
+	{
+		if(arr[n-1-i]!=val)
+		v.push_back(arr[n-1-i]);
+		mp[arr[n-1-i]]=-1;
 	}
 }
-if(n==1)
-cout<<v[0].second<<endl;
-else if(n==2)
-{
-	if(abs(v[0].first-v[1].first)>m)
-	cout<<max(v[0].second,v[1].second)<<endl;
-	else
-	cout<<v[0].second+v[1].second<<endl;
+cout<<v.size()<<endl;
+loop(i,0,v.size()){
+	cout<<v[i]<<" ";
 }
-else
-cout<<ans<<endl;
+
+
 }
 
     int main()

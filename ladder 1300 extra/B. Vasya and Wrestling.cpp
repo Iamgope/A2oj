@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include<string>
+#include<sstream> 
 //#include<unordered_set>
      #define ll long long int
     #define fi first
@@ -66,60 +67,76 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
  */
 
     void solve() {
-ll n,m;
-cin>>n>>m;
-vector< pair<ll,ll> > v;
+ll n;
+cin>>n;
+string s1="";string s2="";
+ll sum1=0,sum2=0;
+vector<ll> v1;
+vector<ll> v2;
+ll lex=-1;
+bool lafi=true;
 loop(i,0,n){
-	ll a,b;
-	cin>>a>>b;
-	pair<ll,ll> p;
-	p.first=a;
-	p.second=b;
-	v.push_back(p);
+     ll a;
+     cin>>a;
+     if(a>=0)
+     {
+     	sum1+=a;
+     	v1.push_back(sum1);
+     	
+     }
+     else
+     {
+     	sum2-=a;
+     	   	v2.push_back(sum2);
+     	
+     }
+     if(i==n-1){
+     	if(a<0)
+     	lafi=false;
+     }
+    
+     
+}
+if(sum1>sum2)
+{
+	cout<<"first"<<endl;
+}
+if(sum2>sum1){
+	cout<<"second"<<endl;
+}
+if(sum1==sum2){
+	ll val=-1;
+      loop(i,0,min(v1.size(),v2.size())){
+      	if(v1[i]>v2[i]){
+      		val=0;
+      		break;
+		}
+		else if(v2[i]>v1[i]){
+		
+		val=1;
+		break;}
+	}
+	
+	if(val==-1){
+		if(v1.size()>v2.size())
+		val=0;
+		else if(v1.size()<v2.size())
+		val=1;
+		else
+		val=-1;
+	}
+	if(val==-1){
+		if(lafi)
+		cout<<"first"<<endl;
+		else
+		cout<<"second"<<endl;
+	}
+	else if(val==0)
+	cout<<"first"<<endl;
+	else
+	cout<<"second"<<endl;
 }
 
-sort(v.begin(),v.end());
-ll sum[n];
-//sum.push_back(0);
-loop(i,0,n){
-	if(i>0)
-	sum[i]=sum[i-1]+v[i].second;
-	else
-	sum[i]=v[i].second;
-}
-ll ans=0;
-loop(i,0,n){
-	ll left=i;
-	ll right=n-1;
-	while(left<right){
-		ll mid=(left+right)/2;
-		if(v[mid].first-v[i].first<=m){
-			left=mid+1;
-		}
-		else
-		{
-			right=mid-1;
-		}
-		if(v[left].first-v[i].first<=m){
-		if(i==0)
-		ans=max(ans,sum[left]);
-		else
-		ans=max(ans,sum[left]-sum[i-1]);
-		}
-	//	cout<<left<<" "<<i<<" "<<ans<<endl;
-	}
-}
-if(n==1)
-cout<<v[0].second<<endl;
-else if(n==2)
-{
-	if(abs(v[0].first-v[1].first)>m)
-	cout<<max(v[0].second,v[1].second)<<endl;
-	else
-	cout<<v[0].second+v[1].second<<endl;
-}
-else
-cout<<ans<<endl;
 }
 
     int main()

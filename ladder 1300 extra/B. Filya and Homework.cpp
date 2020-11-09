@@ -66,60 +66,48 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
  */
 
     void solve() {
-ll n,m;
-cin>>n>>m;
-vector< pair<ll,ll> > v;
-loop(i,0,n){
-	ll a,b;
-	cin>>a>>b;
-	pair<ll,ll> p;
-	p.first=a;
-	p.second=b;
-	v.push_back(p);
-}
+ll n;
+cin>>n;
+map<ll,ll> mp;
+ll count=0;
 
-sort(v.begin(),v.end());
-ll sum[n];
-//sum.push_back(0);
+ll x=-1,y=-1,z=-1;
 loop(i,0,n){
-	if(i>0)
-	sum[i]=sum[i-1]+v[i].second;
+	ll a;
+	cin>>a;
+	mp[a]++;
+	if(mp[a]==1){
+	count++;
+	if(x==-1)
+	x=a;
+	else if(y==-1)
+	y=a;
 	else
-	sum[i]=v[i].second;
+	z=a;	
+	}
+	//count++;
 }
-ll ans=0;
-loop(i,0,n){
-	ll left=i;
-	ll right=n-1;
-	while(left<right){
-		ll mid=(left+right)/2;
-		if(v[mid].first-v[i].first<=m){
-			left=mid+1;
+if(count<=3)
+{
+	if(count==1||count==2)
+	cout<<"YES"<<endl;
+	else{
+		ll s=x+y+z;
+		ll j=max(z,max(x,y));
+		ll k=min(x,min(y,z));
+		ll l=s-j-k;
+		if(j==k||k==l||j==l)
+		cout<<"YES"<<endl;
+		else{
+			if(l-k==j-l)
+			cout<<"YES"<<endl;
+			else
+			cout<<"NO"<<endl;
 		}
-		else
-		{
-			right=mid-1;
-		}
-		if(v[left].first-v[i].first<=m){
-		if(i==0)
-		ans=max(ans,sum[left]);
-		else
-		ans=max(ans,sum[left]-sum[i-1]);
-		}
-	//	cout<<left<<" "<<i<<" "<<ans<<endl;
 	}
 }
-if(n==1)
-cout<<v[0].second<<endl;
-else if(n==2)
-{
-	if(abs(v[0].first-v[1].first)>m)
-	cout<<max(v[0].second,v[1].second)<<endl;
-	else
-	cout<<v[0].second+v[1].second<<endl;
-}
 else
-cout<<ans<<endl;
+cout<<"NO"<<endl;
 }
 
     int main()

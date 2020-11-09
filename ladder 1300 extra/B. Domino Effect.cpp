@@ -66,60 +66,67 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
  */
 
     void solve() {
-ll n,m;
-cin>>n>>m;
-vector< pair<ll,ll> > v;
-loop(i,0,n){
-	ll a,b;
-	cin>>a>>b;
-	pair<ll,ll> p;
-	p.first=a;
-	p.second=b;
-	v.push_back(p);
-}
-
-sort(v.begin(),v.end());
-ll sum[n];
-//sum.push_back(0);
-loop(i,0,n){
-	if(i>0)
-	sum[i]=sum[i-1]+v[i].second;
-	else
-	sum[i]=v[i].second;
-}
-ll ans=0;
-loop(i,0,n){
-	ll left=i;
-	ll right=n-1;
-	while(left<right){
-		ll mid=(left+right)/2;
-		if(v[mid].first-v[i].first<=m){
-			left=mid+1;
-		}
-		else
+ll n;
+cin>>n;
+string s;
+cin>>s;
+ll count=0;
+//ll first=-1,second=-1;
+ll left=0,right=0;
+while(left<n&&right<n){
+	//cout<<"q0";
+	if(s[left]!='L')
+	left++;
+	if(s[right]!='R')
+	right++;
+	
+	if(s[left]=='L'&&s[right]=='R'){
+		//cout<<left<<" "<<right<<endl;
+		if(left<right)
 		{
-			right=mid-1;
+			count+=right-left-1;
+			left++;
 		}
-		if(v[left].first-v[i].first<=m){
-		if(i==0)
-		ans=max(ans,sum[left]);
-		else
-		ans=max(ans,sum[left]-sum[i-1]);
+		else{
+			if((left-right)%2==0)
+			count+=1;
+	             
+	             right++;
 		}
-	//	cout<<left<<" "<<i<<" "<<ans<<endl;
+	}
+	
+
+}
+ll  val=0;
+loop(i,0,n){
+	if(s[i]!='.'){
+		if(s[i]=='R')
+		{
+			count+=i;
+			break;
+		}
+		else{
+			break;
+		}
+	}
+	else{
+		val++;
 	}
 }
-if(n==1)
-cout<<v[0].second<<endl;
-else if(n==2)
-{
-	if(abs(v[0].first-v[1].first)>m)
-	cout<<max(v[0].second,v[1].second)<<endl;
-	else
-	cout<<v[0].second+v[1].second<<endl;
+for(ll i=n-1;i>=0;i--){
+	if(s[i]!='.'){
+		if(s[i]=='L'){
+			count+=n-1-i;
+			break;
+		}
+		else
+		break;
+	}
 }
+if(val<n)
+cout<<count<<endl;
 else
-cout<<ans<<endl;
+cout<<val<<endl;
 }
 
     int main()
