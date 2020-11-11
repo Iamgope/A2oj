@@ -8,7 +8,7 @@
     #define endl '\n'
     #define fast_io ios_base::sync_with_stdio(0); cin.tie(0)
      #define endl '\n'
-#define loop(i, a, b) for (long long int i = a; i < b; i++)
+#define loop(i, a, b) for (long long unsigned int i = a; i < b; i++)
     using namespace std;
 
    // typedef long long ll;
@@ -66,48 +66,53 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
  */
 
     void solve() {
-string s;
-cin>>s;
-ll k;
-cin>>k;
-string d;
-d=s;
-sort(d.begin(),d.end(),greater<char>());
-while(k>0&&d!=s){
-	loop(i,0,s.length()){
-		char val=s[i]; ll pos=i;
-		ll a=s.length();
-		if(s.length()>k+1+i)
-		a=k+1+i;
-		loop(j,i+1,a)
-		{
-		      if(val<s[j]){
-		      	val=s[j];
-		      	pos=j;
-			}
-			
-			}
-			if(val!='0'){
-				char temp=s[pos];
-		/*	s[pos]=s[i];
-			s[i]=temp;
-			k=k-(pos-i);*/
-		//	cout<<k<<" "<<pos<<" "<<i<<endl;
-		
-		for(ll k=pos-1;k>=i;k--)
-		{
-			s[k+1]=s[k];
-		}
-		s[i]=temp;
-		k=k-(pos-i);
-			}
-		
-		
+ll x1,y1,x2,y2;
+cin>>x1>>y1>>x2>>y2;
+ll a=0,b=0,c=0;
+if(x1==x2||y1==y2)
+a=1;
+else
+a=2;
+
+c=max(abs(x1-x2),abs(y1-y2));
+
+if(x1%2==1 && y1%2==1){
+	if(x2%2==1 && y2%2==1 || x2%2==0 && y2%2==0){
+		if(abs(x1-x2)==abs(y1-y2))
+		b=1;
+		else
+		b=2;
 	}
+	else
+	b=0;
+}
+else if(x1%2==0 && y1%2==0){
+	if(x2%2==1 && y2%2==1|| x2%2==0 && y2%2==0){
+	//b=0;	
+	
+			if(abs(x1-x2)==abs(y1-y2))
+	         	b=1;
+	         	else
+	         	b=2;
 	}
-	cout<<s<<endl;
+	else{
+		b=0;
+	}
+}
+else{
+	if(x2%2==1 && y2%2==1|| x2%2==0 && y2%2==0 )
+	b=0;
+	else
+	{
+	if(abs(x1-x2)==abs(y1-y2))
+	         	b=1;
+	         	else
+	         	b=2;	
+	}
 }
 
+cout<<a<<" "<<b<<" "<<c;
+}
 
     int main()
     {

@@ -8,7 +8,7 @@
     #define endl '\n'
     #define fast_io ios_base::sync_with_stdio(0); cin.tie(0)
      #define endl '\n'
-#define loop(i, a, b) for (long long int i = a; i < b; i++)
+#define loop(i, a, b) for (long long unsigned int i = a; i < b; i++)
     using namespace std;
 
    // typedef long long ll;
@@ -66,51 +66,14 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
  */
 
     void solve() {
-string s;
-cin>>s;
-ll k;
-cin>>k;
-string d;
-d=s;
-sort(d.begin(),d.end(),greater<char>());
-while(k>0&&d!=s){
-	loop(i,0,s.length()){
-		char val=s[i]; ll pos=i;
-		ll a=s.length();
-		if(s.length()>k+1+i)
-		a=k+1+i;
-		loop(j,i+1,a)
-		{
-		      if(val<s[j]){
-		      	val=s[j];
-		      	pos=j;
-			}
-			
-			}
-			if(val!='0'){
-				char temp=s[pos];
-		/*	s[pos]=s[i];
-			s[i]=temp;
-			k=k-(pos-i);*/
-		//	cout<<k<<" "<<pos<<" "<<i<<endl;
-		
-		for(ll k=pos-1;k>=i;k--)
-		{
-			s[k+1]=s[k];
-		}
-		s[i]=temp;
-		k=k-(pos-i);
-			}
-		
-		
-	}
-	}
-	cout<<s<<endl;
+double x = 0.3*3+0.1; 
+printf("%.20f\n", x);
+
 }
 
-
     int main()
-    {
+    {  //freopen("input.txt", "r", stdin); freopen("output.txt", "w", stdout);
+    //__int128_t
         fast_io;
 
         int T;

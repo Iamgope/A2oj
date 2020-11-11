@@ -69,32 +69,50 @@ void eraseAllSubStr(std::string & mainStr, const std::string & toErase)
 ll n;
 cin>>n;
 ll arr[n];
-ll max_v=0;
-ll max_v_i=0;
+map<ll,ll> mp;
+ll maxi=0;
 loop(i,0,n){
 	cin>>arr[i];
-	if(max_v<=arr[i]){
-		max_v=arr[i];
-		max_v_i=i;
-	}
+	mp[arr[i]]++;
+	maxi=max(maxi,arr[i]);
 }
-if(max_v>arr[0]){
-	//ll sum=0;
-	 ll count=0;
-	loop(i,0,n){
-		if(arr[i]==max_v)
-		count++;
-	//	v.push_back(max_v);
-	}
-	ll ans=min(max_v-arr[0]+1,(count*max_v-count*arr[0])/(count+1)+1);
-	cout<<ans<<endl;
-	
+if(maxi==arr[0])
+{
+	if(mp[arr[0]]==1)
+	cout<<"0"<<endl;
+	else
+	cout<<"1"<<endl;
 }
 else{
-	if(arr[0]==max_v&&max_v_i!=0)
-	cout<<"1"<<endl;
-	else
-	cout<<"0"<<endl;
+	ll num=mp[maxi];
+	ll x=(maxi-arr[0])/(num+1);
+	if(maxi-x<arr[0]+num*x)
+	cout<<num*x<<endl;
+	else{
+		ll brr[mp[maxi]]={maxi-x};
+		loop(i,0,mp[maxi])
+		brr[i]=maxi-x;
+	//	cout<<brr[1];
+	//	cout<<brr[mp[maxi]-1];
+		ll val=0;
+		loop(i,0,mp[maxi]){
+		
+			if(arr[0]+num*x+val>brr[mp[maxi]-1])
+			{
+				break;
+			}
+			else{
+				if(brr[i]>0)
+				{
+					brr[i]--;
+					val++;
+				}
+			}
+		
+		}
+		cout<<num*x+val<<endl;
+	}
+	
 }
 
 
